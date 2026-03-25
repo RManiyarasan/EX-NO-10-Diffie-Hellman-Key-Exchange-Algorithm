@@ -1,4 +1,7 @@
 # EX-NO-10-Diffie-Hellman-Key-Exchange-Algorithm
+## NAME : MANIYARASAN R
+## REG.NO : 212224040185
+## DATE : 10-03-2026
 
 ## AIM:
 To Implement Diffie Hellman Key Exchange Algorithm 
@@ -19,10 +22,48 @@ To Implement Diffie Hellman Key Exchange Algorithm
 5. Security: The difficulty of computing discrete logarithms ensures that the shared key remains secure even if public values are intercepted.
 
 ## Program:
+```
+#include <stdio.h>
+#include <math.h>
+long long int power(long long int base, long long int exp, long long int mod) {
+ long long int result = 1;
+ for (int i = 0; i < exp; i++) {
+ result = (result * base) % mod;
+ }
+ return result;
+}
+int main() {
+ long long int P, G, a, b;
+ long long int A, B, secretA, secretB;
+ printf("Enter a prime number (P): ");
+ scanf("%lld", &P);
+ printf("Enter a primitive root of %lld (G): ", P);
+ scanf("%lld", &G);
+ printf("Enter private key for A: ");
+ scanf("%lld", &a);
+ printf("Enter private key for B: ");
+ scanf("%lld", &b);
+ A = power(G, a, P);
+ B = power(G, b, P);
+ secretA = power(B, a, P);
+ secretB = power(A, b, P);
+ printf("\nPublic Key of A: %lld", A);
+ printf("\nPublic Key of B: %lld", B);
+ printf("\n\nSecret Key for A: %lld", secretA);
+ printf("\nSecret Key for B: %lld\n", secretB);
+ if (secretA == secretB)
+ printf("\nshared secret key successfully established!\n");
+ else
+ printf("\nError: Keys do not match.\n");
+ return 0;
+}
+```
 
 
 
 ## Output:
+<img width="860" height="475" alt="image" src="https://github.com/user-attachments/assets/7159f36a-7ac8-4b91-8dae-31dd4f2e16eb" />
+
 
 
 
